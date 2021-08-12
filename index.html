@@ -12,18 +12,22 @@
         // ...
         init: function () {
             this.toggle = false;
-            this.vid = document.querySelector("#videoID")
+            this.vid = document.querySelector("#videoID1")
             this.vid.pause();
+            this.vid2 = document.querySelector("#videoID2")
+            this.vid2.pause();
         },
         tick: function () {
             if (this.el.object3D.visible == true) {
                 if (!this.toggle) {
                     this.toggle = true;
                     this.vid.play();
+                    this.vid2.play();
                 }
             } else {
                 this.toggle = false;
                 this.vid.pause();
+                this.vid2.pause();
             }
         }
     });
@@ -64,8 +68,20 @@
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
     <a-assets>
-        <video crossorigin="anonymous" id="videoID" autoplay loop="true" type="video/mp4" preload="auto" src="https://media.istockphoto.com/videos/futuristic-brain-scan-video-id958438058">  
+        <video crossorigin="anonymous" id="videoID1" autoplay loop="true" type="video/mp4" preload="auto" src="https://media.istockphoto.com/videos/futuristic-brain-scan-video-id958438058">
+          <video crossorigin="anonymous" id="videoID2" autoplay loop="true" type="video/mp4" preload="auto" src="https://static.videezy.com/system/resources/previews/000/043/279/original/200128_06_Saber-blue-heart-rate-pulse-graph-seamless-loop.mp4">  
     </a-assets>
+    <a-nft
+      type="nft"
+      url="/assets/пигмалион_баннер_2020"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+        <a-video src="#videoID2" width="360" height="240" rotation="270 0 0"></a-video>
+    </a-nft>
     <a-nft
       type="nft"
       url="/assets/image"
@@ -75,15 +91,17 @@
       smoothThreshold="5"
     >
         <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-        <a-video src="#videoID" width="360" height="240" rotation="270 0 0"></a-video>
+        <a-video src="#videoID1" width="360" height="240" rotation="270 0 0"></a-video>
     </a-nft>
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
   </a-scene>
   <script>
     window.addEventListener('click', function () {
-    var v = document.querySelector('#videoID');
+    var v = document.querySelector('#videoID1');
     v.play();
+    var v2 = document.querySelector('#videoID2');
+    v2.play();
     });
 </script>
 </body>
